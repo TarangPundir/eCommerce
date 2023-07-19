@@ -12,4 +12,5 @@ class Category(models.Model):
     category_parent = models.ForeignKey("backendapp.Category",  on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.category_name
-    
+
+    # Shivam code
