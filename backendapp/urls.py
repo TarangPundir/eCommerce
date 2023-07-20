@@ -17,5 +17,48 @@ urlpatterns = [
     path('view_category/<int:id>', views.category_view, name='view_category'),
     path('update_category/<int:id>', views.category_update, name='update_category'),
     # category Urls End
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    path('product_list/', views.product_list, name='product_list'),
+    path('product_view/<int:id>/', views.product_view, name='product_view'),
+    path('delete_product/<int:id>/', views.product_delete, name='delete_product'),
 
 ]

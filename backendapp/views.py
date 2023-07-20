@@ -84,3 +84,136 @@ def category_update(request, id):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@api_view(['GET'])
+def product_list(request):
+    products = Product.objects.all()
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def product_view(request, id):
+    products = Product.objects.get(id=id)
+    serializer = ProductSerializer(products)
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def product_delete(request, id):
+    product = Product.objects.get(id=id)
+    product_gallery = Product_Gallery.objects.filter(product=product)
+    product.delete()
+    product_gallery.delete()
+    return Response('success')
+        
