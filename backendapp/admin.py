@@ -7,18 +7,8 @@ admin.site.register(Banner)
 
 admin.site.register(Category)
 
-
-
-
-
-
-
-
-
-
-
-
-
 admin.site.register(Product)
 
 admin.site.register(Product_Gallery)
+
+admin.site.register(Review)

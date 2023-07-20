@@ -12,51 +12,8 @@ class Category(models.Model):
     category_parent = models.ForeignKey("backendapp.Category",  on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.category_name
-
-    # Shivam code
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      
 class Product(models.Model):
     product_name = models.CharField(max_length=200)
     short_description = models.CharField(max_length=300)
@@ -71,3 +28,19 @@ class Product(models.Model):
 class Product_Gallery(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_images', null=True, blank=True)
     image = models.ImageField(upload_to='product_gallery')
+
+Expreyance = (
+    ("Good","Good"),
+    ("Average", "Average"),
+    ("Best", "Best"),
+    ("Bad", "Bad"),
+    ("Worst", "Worst"),
+)
+
+class Review(models.Model):
+    rating = models.FloatField()
+    expreyance = models.CharField(max_length=100, choices=Expreyance, default=1) 
+    file = models.FileField()
+    description = models.TextField(max_length=500)
+    product_name = models.CharField(max_length=100)
+

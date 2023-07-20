@@ -52,6 +52,25 @@ def category_list(request):
     serializer = CategorySerilizer(category, many=True)
     return Response(serializer.data)
 
+# Shivam
+@api_view(["GET"])
+def category_child(request, id):
+    category = Category.objects.filter(category_parent=id)
+    serializers=CategorySerilizer(category, many=True)
+    return Response(serializers.data)
+
+
+
+@api_view(["GET"])
+def parent_model_by_child_id(request, child_id):
+    try:
+        parents = Category.objects.filter(child_model__id=child_id)
+        serializer = CategorySerilizer(parents, many=True)
+        return Response(serializer.data)
+    except Category.DoesNotExist:
+        return Response({"error": "ParentModel not found"}, status=404)
+
+
 
 @api_view(['POST'])
 def category_create(request):
@@ -85,118 +104,6 @@ def category_update(request, id):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @api_view(['GET'])
 def product_list(request):
     products = Product.objects.all()
@@ -217,3 +124,30 @@ def product_delete(request, id):
     product_gallery.delete()
     return Response('success')
         
+# Shivam
+@api_view(["GET"])
+def review_list(request):
+    review = Review.objects.all()
+    serializers = ReviewSerilizer(review, many=True)
+    return Response(serializers.data)
+
+@api_view(["POST"])
+def review_create(request):
+    serializers = ReviewSerilizer(data=request.data)
+    if serializers.is_valid():
+        serializers.save()
+        return Response(serializers.data, status=status.HTTP_201_CREATED)
+    return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def review_view(request, id):
+    review = Review.objects.get(id=id)
+    serializers = ReviewSerilizer(review, many=False)
+    return Response(serializers.data)
+
+@api_view(['DLETE'])
+def review_delete(request, id):
+    review = get_object_or_404( Review ,id=id)
+    review.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)

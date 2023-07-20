@@ -61,4 +61,11 @@ urlpatterns = [
     path('product_view/<int:id>/', views.product_view, name='product_view'),
     path('delete_product/<int:id>/', views.product_delete, name='delete_product'),
 
+    path('review_get/', views.review_list, name='review_get'),
+    path('review_store/', views.review_create, name='review_store'),
+    path('review_view/<int:id>', views.review_view, name='review_view'),
+    path('review_delete/<int:id>', views.review_delete, name='review_delete'),
+    path('category_child/<int:id>', views.category_child, name='category_child'),
+    path('category_parent/<int:child_id>/', views.parent_model_by_child_id, name='parent_model_by_child_id'),
+
 ]
