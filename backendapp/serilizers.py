@@ -10,3 +10,9 @@ class CategorySerilizer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
+
+
+class ReviewSerilizer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = '__all__'

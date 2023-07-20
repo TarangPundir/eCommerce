@@ -6,3 +6,7 @@ from .models import *
 admin.site.register(Banner)
 
 admin.site.register(Category)
+
+# Shivam
+
+admin.site.register(Review)

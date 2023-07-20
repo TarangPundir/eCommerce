@@ -14,3 +14,19 @@ class Category(models.Model):
         return self.category_name
 
     # Shivam code
+
+Expreyance = (
+    ("Good","Good"),
+    ("Average", "Average"),
+    ("Best", "Best"),
+    ("Bad", "Bad"),
+    ("Worst", "Worst"),
+)
+
+class Review(models.Model):
+    rating = models.FloatField()
+    expreyance = models.CharField(max_length=100, choices=Expreyance, default=1) 
+    file = models.FileField()
+    description = models.TextField(max_length=500)
+    product_name = models.CharField(max_length=100)
+
