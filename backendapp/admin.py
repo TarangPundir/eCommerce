@@ -12,3 +12,7 @@ admin.site.register(Product)
 admin.site.register(Product_Gallery)
 
 admin.site.register(Review)
+
+admin.site.register(Cart)
+
+admin.site.register(Contact)

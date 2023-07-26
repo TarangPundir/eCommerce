@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
@@ -21,7 +22,7 @@ class Product(models.Model):
     product_price = models.IntegerField()
     product_discount = models.IntegerField()
     product_thumbnail = models.ImageField(upload_to='product_thumbnail', null=True, blank=True)
-    product_category = models.ManyToManyField("backendapp.Category", null=True, blank=True)
+    product_category = models.ManyToManyField("backendapp.Category", blank=True)
     def __str__(self):
         return self.product_name
     
@@ -43,4 +44,15 @@ class Review(models.Model):
     file = models.FileField()
     description = models.TextField(max_length=500)
     product_name = models.CharField(max_length=100)
+    
+class Cart(models.Model):
+    user_id = models.IntegerField(null=True, blank=True)
+    product = models.ForeignKey("backendapp.Product", verbose_name=_("product_fk_id"), on_delete=models.CASCADE)
+    count = models.IntegerField()
 
+class Contact(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    subject = models.CharField(max_length=100)
+    message = models.CharField(max_length=500)
